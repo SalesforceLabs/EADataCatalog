@@ -1,0 +1,26 @@
+<aura:component access="global">
+    <aura:attribute name="diagnostics" type="Object" access="global"/>
+    <aura:attribute name="report" type="String"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+    
+    <div class="main">
+        <lightning:tabset class="tabset slds-p-horizontal_x-small" variant="scoped">
+            <lightning:tab label="Usage Guide" class="tab">
+                <div class="guide">
+                    <iframe src="https://analytics-data-catalog.herokuapp.com/eadc_usage_guide.html"/>
+                </div>
+            </lightning:tab>
+            <lightning:tab label="Troubleshooting" class="tab">
+                <lightning:card title="Diagnostics">
+                    <aura:set attribute="actions">
+		                <lightning:buttonIcon alternativeText="Copy Diagnostics to Clipboard" iconName="utility:copy_to_clipboard" onclick="{!c.handleCopyToClipboard}"/>
+                    </aura:set>
+                    <lightning:textarea aura:id="report_textarea" class="diagnostics" value="{!v.report}"/>
+                </lightning:card>                
+            </lightning:tab>
+        </lightning:tabset>
+    </div>
+</aura:component>
